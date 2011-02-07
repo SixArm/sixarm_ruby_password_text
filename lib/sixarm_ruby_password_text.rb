@@ -1,11 +1,11 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 =begin rdoc
 
-= SixArm Ruby Gem » PasswordText
+= SixArm.com » Ruby » PasswordText class to generate secure user-friendly passwords
 
 Author:: Joel Parker Henderson, joelparkerhenderson@gmail.com
-Copyright:: Copyright (c) 2006-2010 Joel Parker Henderson
-License:: Your choice of BSD, MIT, LGPL, or CreativeCommons Non-commercial Share Alike
+Copyright:: Copyright (c) 2006-2011 Joel Parker Henderson
+License:: See LICENSE.txt file
 
 PasswordText generates random passwords that are secure and user-friendly.
 
@@ -20,11 +20,15 @@ The default character array is optimized for usability and accessibility, to hel
 == Method
 
 * new: optional, named parameters are length (integer) and alternate character set (array of characters, which forces the password to contain only characters from the passed array)
+* chars, chars=: get/set the character array
+* length, length=: get/set the length of the password
+* next: generate a new PasswordText string, using the same length and same character array
 
 == Examples
   password = PasswordText.new => "avzwbnxremcd"
-  password = PasswordText.new(:length => 4) => "avzw"
-  password = PasswordText.new(:length => 4, :chars => ['x','y','z']) => "yzyx"
+  password = PasswordText.new(:len => 4) => "avzw"
+  password = PasswordText.new(:len => 4, :chars => ['x','y','z']) => "yzyx"
+  password.next => "tjqwbesbymzetq"
 
 == SecureRandom
 
@@ -33,17 +37,25 @@ Ruby 1.8.6 and older does not include a secure random number method so this gem 
 =end
 
 
-if !defined?(SecureRandom) then require 'sixarm_ruby_secure_random' end
+if !defined?(SecureRandom)
+  begin
+    # First we will try to load the Ruby standard library
+    require 'securerandom'
+  rescue
+    # Second we will try to load our own SecureRandom gem library
+    require 'sixarm_ruby_secure_random' 
+  end
+end
 
 
 class PasswordText < String
 
 
  # Default characters
- @@chars=['a','b','c','d','e','f','g','h','j','k','m','n','p','q','r','s','t','u','v','w','x','y','z']
+ DEFAULT_CHARS=['a','b','c','d','e','f','g','h','j','k','m','n','p','q','r','s','t','u','v','w','x','y','z']
 
  # Default length
- @@length=12
+ DEFAULT_LEN=12
 
 
  # Return a new secure random password.
@@ -51,7 +63,7 @@ class PasswordText < String
  # The password has a given length (or the default)
  # and is picked from a given character array (or the default).
  #
- # To set the default length, see #length.
+ # To set the default length, see #length
  #
  # To set the default character array, see #chars
  #
@@ -59,16 +71,13 @@ class PasswordText < String
  #   password = PasswordText.new => "avzwbnxremcd"
  #   password = PasswordText.new(4) => "avzw"
  #   password = PasswordText.new(4,['x','y','z']) => "yzyx"
- #
- # DEPRECATED, BREAKS CURRENT IMPLEMENTATION
- # def initialize(length=@@length,chars=@@chars)
- #   super(Array.new(length){chars[SecureRandom.random_number(chars.size)]}.join)
- # end
+
  def initialize(opts={})
-   @@length ||= opts[:length],
-   @@chars ||= opts[:chars]
-   super(Array.new(length){chars[SecureRandom.random_number(chars.size)]}.join)
+   self.chars= opts[:chars] || DEFAULT_CHARS
+   self.len= opts[:len] || DEFAULT_LEN
+   super(Array.new(len){chars[SecureRandom.random_number(chars.size)]}.join)
  end
+
 
  # Get the default character array.
  #
@@ -79,15 +88,15 @@ class PasswordText < String
  #
  # We choose this as a valuable tradeoff between usability and complexity.
 
- def self.chars
-  @@chars
+ def chars
+  @chars || DEFAULT_CHARS
  end
 
 
  # Set the default character array
 
- def self.chars=(chars)
-  @@chars=chars
+ def chars=(chars)
+  @chars=chars
  end
 
 
@@ -96,16 +105,24 @@ class PasswordText < String
  # We choose 12 characters to make a sufficiently strong password.
  # for usual web applications. You can make this stronger as needed.
 
- def self.length
-  @@length||=12
+ def len
+  @len || DEFAULT_LEN
  end
 
 
  # Set the default length
 
- def self.length=(length)
-  @@length=length
+ def len=(length)
+  @len=length
  end
+
+
+ # Return the next random password of the same length and character array
+
+ def next
+   PasswordText.new(:chars => chars, :len => len)
+ end
+
 
 end
 
