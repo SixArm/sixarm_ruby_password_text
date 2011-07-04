@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 =begin rdoc
 
 = SixArm.com » Ruby » PasswordText class to generate secure user-friendly passwords
@@ -43,7 +44,7 @@ if !defined?(SecureRandom)
     require 'securerandom'
   rescue
     # Second we will try to load our own SecureRandom gem library
-    require 'sixarm_ruby_secure_random' 
+    require 'sixarm_ruby_secure_random'
   end
 end
 
