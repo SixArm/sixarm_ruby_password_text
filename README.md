@@ -16,7 +16,7 @@ For docs go to <http://sixarm.com/sixarm_ruby_password_text/doc>
 Want to help? We're happy to get pull requests.
 
 
-## Quickstart
+## Install quickstart
 
 Install:
 
@@ -24,14 +24,14 @@ Install:
 
 Bundler:
 
-    gem "sixarm_ruby_password_text", "=1.3.0"
+    gem "sixarm_ruby_password_text", "~>1.3.0"
 
 Require:
 
     require "sixarm_ruby_password_text"
 
 
-## High Security (Optional)
+## Install with security (optional)
 
 To enable high security for all our gems:
 
