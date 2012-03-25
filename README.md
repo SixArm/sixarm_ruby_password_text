@@ -1,6 +1,7 @@
 # SixArm.com » Ruby » <br> PasswordText class to generate secure user-friendly passwords
 
-* Docs: <http://sixarm.com/sixarm_ruby_password_text/doc>
+* Doc: <http://sixarm.com/sixarm_ruby_password_text/doc>
+* Gem: <http://rubygems.org/gems/sixarm_ruby_password_text>
 * Repo: <http://github.com/sixarm/sixarm_ruby_password_text>
 * Email: Joel Parker Henderson, <joel@sixarm.com>
 
