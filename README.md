@@ -63,8 +63,3 @@ The default character array is optimized for usability and accessibility, to hel
 ## SecureRandom
 
 Ruby 1.8.6 and older does not include a secure random number method so this gem checks to see if the SecureRandom class is defined and, if not, requires the sixarm_ruby_secure_random gem (http://github.com/sixarm/sixarm_ruby_secure_random).
-
-
-## Changes
-
-* 2012-03-17 1.3.1 Upgrade for Ruby 1.9.3, minitest/spec, and improved docs.
