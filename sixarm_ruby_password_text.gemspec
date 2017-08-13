@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name              = "sixarm_ruby_password_text"
   s.summary           = "SixArm.com → Ruby → PasswordText class"
   s.description       = "PasswordText class to generate strong savvy passwords"
-  s.version           = "1.3.2"
+  s.version           = "1.3.3"
 
   s.author            = "SixArm"
   s.email             = "sixarm@sixarm.com"
