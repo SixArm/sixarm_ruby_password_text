@@ -3,7 +3,7 @@
 * Doc: <http://sixarm.com/sixarm_ruby_password_text/doc>
 * Gem: <http://rubygems.org/gems/sixarm_ruby_password_text>
 * Repo: <http://github.com/sixarm/sixarm_ruby_password_text>
-<!--HEADER-SHUT-->
+<!--header-shut-->
 
 
 ## Introduction
@@ -17,7 +17,7 @@ For docs go to <http://sixarm.com/sixarm_ruby_password_text/doc>
 Want to help? We're happy to get pull requests.
 
 
-<!--INSTALL-OPEN-->
+<!--install-opent-->
 
 ## Install
 
@@ -37,7 +37,7 @@ To require the gem in your code:
 
     require 'sixarm_ruby_password_text'
 
-<!--INSTALL-SHUT-->
+<!--install-shut-->
 
 
 ## Details
